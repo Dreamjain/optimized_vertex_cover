@@ -1,30 +1,33 @@
 # 🌐 Optimized Vertex Cover
 
-A C++ implementation of a **greedy vertex-cover approach** for a graph representing fields and their water connections. The algorithm selects both endpoints of an uncovered edge and marks them as covered.
+A C++ implementation of a **greedy vertex-cover algorithm** for a graph representing fields and their water connections. The project focuses on graph traversal, coverage tracking, and a practical approximation strategy.
 
-## 🖼️ Graph View
+## 🎯 Problem
 
-```mermaid
-graph LR
-    N0((0)) --- N1((1))
-    N0 --- N2((2))
-    N1 --- N3((3))
-    N2 --- N3
-    N3 --- N4((4))
-    N4 --- N5((5))
-```
+Given an undirected graph, select a set of vertices such that every edge has at least one selected endpoint. This implementation uses a greedy strategy rather than an exact minimum-vertex-cover solver.
 
-## 🧠 How It Works
+## 🧠 Approach
 
 For every edge `(u, v)`:
 
-- If neither endpoint has been selected, both vertices are added to the cover.
-- Selected vertices are marked so later edges can be skipped when already covered.
-- The program prints the selected irrigation points.
+1. Check whether either endpoint has already been selected.
+2. If neither endpoint is selected, add both vertices to the cover.
+3. Mark selected vertices so subsequent edges can reuse them.
+4. Print the resulting cover.
 
-The sample graph contains **6 vertices** and represents connections between fields.
+For the included sample graph, the algorithm selects **0, 1, 3, 4**.
 
-> This is a greedy approximation-style approach; it is not presented as an exact minimum-vertex-cover solver for arbitrary graphs.
+> **Engineering note:** this greedy strategy is intentionally simple and is not guaranteed to produce the minimum vertex cover for arbitrary graphs.
+
+## 🖼️ Actual Program Output
+
+The visual below records the output produced by the repository's sample program:
+
+![Actual vertex cover output](docs/actual-output.svg)
+
+## 📊 Complexity
+
+With the current edge-list implementation, the traversal is **O(E)** time and **O(V)** auxiliary space for the selected/visited state.
 
 ## 🧰 Technology
 
@@ -34,13 +37,19 @@ The sample graph contains **6 vertices** and represents connections between fiel
 ## 🚀 Compile & Run
 
 ```bash
-g++ Vertex-cover.cpp -o vertex-cover
+g++ -std=c++17 -Wall -Wextra Vertex-cover.cpp -o vertex-cover
 ./vertex-cover
+```
+
+Expected output:
+
+```text
+Selected Irrigation Points (Vertex Cover): 0 1 3 4
 ```
 
 ## 📌 Status
 
-Completed algorithm practice project.
+Completed algorithm engineering project.
 
 ## 👨‍💻 Author
 
